@@ -32,5 +32,7 @@ Desarrollar un sistema simple orientado a objetos para la gestión de una biblio
 
 ### Cómo ejecutar el programa
 
-```bash
-python main.py
+-Descargas o copias el repositorio
+-Abris en la terminal o en el editor de codigo
+-Ejecutas el main.py
+-python main.py
