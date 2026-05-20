@@ -50,15 +50,34 @@ python -m pip install -r requirements.txt
 python main.py
 ```
 
+## 2. Diseño de un conjunto de Pruebas
+
+Se diseñaron distintas pruebas para verificar que el sistema funcione correctamente.
+
+### 2.1 Prueba de componentes
+Se probaron de forma individual cada clase y sus métodos principales:
+- Clase `Libro`
+- Clase `Socio`
+- Clase `Biblioteca`
+
+### 2.2 Prueba de Integración
+Se verificó que las clases interactúen correctamente entre sí (por ejemplo: registrar un socio y luego realizarle un préstamo).
+
+### 2.3 Prueba de Caja Negra
+Se probaron las funcionalidades del sistema según su comportamiento esperado, sin mirar el código interno.
+
+### 2.4 Prueba de Rendimiento
+Se comprobó que el sistema responda de forma rápida al agregar múltiples libros y socios.
+
+### 2.5 Prueba de Interfaz
+Se verificó que el menú de consola sea claro, fácil de usar y maneje correctamente las entradas del usuario.
+
+### 2.6 Prueba de Camino
+Se probaron los caminos principales del programa (préstamo exitoso, préstamo fallido, devolución de libro, etc.).
+
 ### Cómo ejecutar los tests
 
-Los tests se ejecutan desde la raíz del proyecto con `pytest`:
+Los tests se ejecutan desde la raíz del proyecto con **pytest**:
 
 ```bash
 python3 -m pytest -q
-```
-
-Estructura propuesta para pruebas:
-- `tests/test_libro.py` — pruebas unitarias para `Libro`
-- `tests/test_socio.py` — pruebas unitarias para `Socio`
-- `tests/test_biblioteca.py` — pruebas de integración ligeras
