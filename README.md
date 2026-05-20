@@ -81,3 +81,34 @@ Los tests se ejecutan desde la raíz del proyecto con **pytest**:
 
 ```bash
 python3 -m pytest -q
+```
+
+## 3. Planificar la ejecución de las Pruebas
+
+### 3.1 Planificación de la ejecución
+
+Se planificó ejecutar las pruebas de forma automática con **pytest**.
+
+**Orden de ejecución:**
+1. Pruebas unitarias de `Libro`
+2. Pruebas unitarias de `Socio`
+3. Pruebas de integración de `Biblioteca`
+
+**Comando utilizado:**
+```bash
+python3 -m pytest -v
+```
+### 3.2 Ejecución de las Pruebas y Documentación
+
+Fecha de ejecución: 20 de mayo de 2026
+
+Salida obtenida:
+
+tests/test_biblioteca.py::test_prestamo_exitoso PASSED
+tests/test_biblioteca.py::test_prestamo_fallos PASSED
+tests/test_libro.py::test_libro_getters_y_estado PASSED
+tests/test_libro.py::test_prestar_devolver PASSED
+tests/test_socio.py::test_socio_prestamo_y_limite PASSED
+
+5 passed in 0.01s
+
