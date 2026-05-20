@@ -1,6 +1,4 @@
-from biblioteca import Biblioteca
-from libro import Libro
-from socio import Socio
+from biblioteca import Biblioteca, Libro, Socio
 
 def main():
     biblioteca = Biblioteca()
