@@ -104,11 +104,13 @@ Fecha de ejecución: 20 de mayo de 2026
 
 Salida obtenida:
 
-tests/test_biblioteca.py::test_prestamo_exitoso PASSED
-tests/test_biblioteca.py::test_prestamo_fallos PASSED
-tests/test_libro.py::test_libro_getters_y_estado PASSED
-tests/test_libro.py::test_prestar_devolver PASSED
-tests/test_socio.py::test_socio_prestamo_y_limite PASSED
+| Test | Tipo de prueba | Resultado |
+|---|---|---|
+| tests/test_biblioteca.py::test_prestamo_exitoso | Integracion | PASSED |
+| tests/test_biblioteca.py::test_prestamo_fallos | Integracion | PASSED |
+| tests/test_libro.py::test_libro_getters_y_estado | Unitaria | PASSED |
+| tests/test_libro.py::test_prestar_devolver | Unitaria | PASSED |
+| tests/test_socio.py::test_socio_prestamo_y_limite | Unitaria | PASSED |
 
 5 passed in 0.01s
 
