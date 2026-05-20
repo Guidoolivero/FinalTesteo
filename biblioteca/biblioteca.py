@@ -1,5 +1,5 @@
-from libro import Libro
-from socio import Socio
+from .libro import Libro
+from .socio import Socio
 
 class Biblioteca:
     def __init__(self):

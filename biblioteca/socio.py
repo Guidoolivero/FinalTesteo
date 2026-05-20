@@ -1,4 +1,4 @@
-from libro import Libro
+from .libro import Libro
 
 class Socio:
     def __init__(self, dni: str, nombre: str):
