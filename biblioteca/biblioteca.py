@@ -29,31 +29,31 @@ class Biblioteca:
         socio = self.buscar_socio(dni)
 
         if not libro or not socio:
-            print("❌ Libro o socio no encontrado.")
+            print("Libro o socio no encontrado.")
             return False
         if not libro.esta_disponible():
-            print("❌ El libro no está disponible.")
+            print("El libro no esta disponible.")
             return False
         if not socio.puede_pedir_prestado():
-            print("❌ El socio ya tiene el máximo de libros permitidos (3).")
+            print("El socio ya tiene el maximo de libros permitidos (3).")
             return False
 
         libro.prestar()
         socio.agregar_prestamo(libro)
-        print("✅ Préstamo realizado con éxito.")
+        print("Prestamo realizado con exito.")
         return True
 
     def devolver_libro(self, isbn: str) -> bool:
         libro = self.buscar_libro(isbn)
         if not libro or libro.esta_disponible():
-            print("❌ Libro no encontrado o ya está disponible.")
+            print("Libro no encontrado o ya esta disponible.")
             return False
 
         for socio in self.__socios:
             if libro in socio.get_libros_prestados():
                 libro.devolver()
                 socio.devolver_libro(libro)
-                print("✅ Libro devuelto correctamente.")
+                print("Libro devuelto corectamente.")
                 return True
         return False
 
