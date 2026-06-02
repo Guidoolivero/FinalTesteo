@@ -32,114 +32,117 @@ Desarrollar un sistema simple orientado a objetos para la gestión de una biblio
 
 ### Cómo ejecutar el programa
 
-1. Descargás o copiás el repositorio.
-2. Abrís una terminal en la raíz del proyecto: `/Users/guidoolivero/FinalTesteo`.
-3. Ejecutás la aplicación con:
-
-Cómo ejecutar (local):
-
-1. Instalar dependencias (opcional):
+1. Clonar o descargar el repositorio.
+2. Abrir una terminal en la raíz del proyecto.
+3. Instalar dependencias (recomendado):
 
 ```bash
-python -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
-2. Ejecutar el programa principal:
+4. Ejecutar la aplicación:
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 ## 2. Diseño de un conjunto de Pruebas
 
-Se diseñaron distintas pruebas para verificar que el sistema funcione correctamente.
+Matriz completa: [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md)
 
 ### 2.1 Prueba de componentes
-Se probaron de forma individual cada clase y sus métodos principales:
-- Clase `Libro`
-- Clase `Socio`
-- Clase `Biblioteca`
+
+Archivos: `tests/test_libro.py`, `tests/test_socio.py`, `tests/test_biblioteca_componente.py`
+
+- Clase `Libro`: getters, préstamo y devolución
+- Clase `Socio`: límite de 3 préstamos
+- Clase `Biblioteca`: búsquedas, listados vacíos, devolución sin préstamo
 
 ### 2.2 Prueba de Integración
-Se verificó que las clases interactúen correctamente entre sí (por ejemplo: registrar un socio y luego realizarle un préstamo).
+
+Archivo: `tests/test_biblioteca.py`
+
+- Préstamo exitoso entre `Biblioteca`, `Libro` y `Socio`
+- Fallos por libro o socio inexistente
 
 ### 2.3 Prueba de Caja Negra
-Se probaron las funcionalidades del sistema según su comportamiento esperado, sin mirar el código interno.
+
+Archivo: `tests/test_caja_negra.py` (marker `caja_negra`)
+
+Se valida solo la API pública (`realizar_prestamo`, `devolver_libro`, `buscar_*`, `esta_disponible`) sin inspeccionar atributos privados.
+
+```bash
+python3 -m pytest -m caja_negra -v
+```
 
 ### 2.4 Prueba de Rendimiento
-Se comprobó que el sistema responda de forma rápida al agregar múltiples libros y socios.
+
+Archivo: `tests/test_rendimiento.py` (marker `benchmark`)
+
+- Alta de 1000 libros
+- Búsqueda de ISBN en catálogo grande
+- Registro de 200 socios
+- 100 préstamos consecutivos
+
+```bash
+python3 -m pytest tests/test_rendimiento.py -v --benchmark-only
+```
 
 ### 2.5 Prueba de Interfaz
-Se verificó que el menú de consola sea claro, fácil de usar y maneje correctamente las entradas del usuario.
+
+Archivo: `tests/test_e2e.py` — validación del menú de consola, mensajes al usuario y opción inválida. Ver [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md) (columna Interfaz).
 
 ### 2.6 Prueba de Camino
-Se probaron los caminos principales del programa (préstamo exitoso, préstamo fallido, devolución de libro, etc.).
+
+Archivo: `tests/test_e2e.py` — caminos felices y de error (préstamo, devolución, alta, salida). Ver [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md) (columna Camino).
 
 ### 2.7 Pruebas End-to-End (E2E)
-Se automatizaron flujos completos del menú de consola ejecutando `main.py` como lo haría un usuario real (entrada por teclado y validación de salida en pantalla).
 
-**Escenarios cubiertos:**
-- Préstamo exitoso
-- Préstamo con libro no disponible
-- Devolución de libro
-- Alta de libro y listado
-- Registro de socio
-- Opción de menú inválida
-- Salida del programa
+Archivo: `tests/test_e2e.py` (marker `e2e`) — flujo completo ejecutando `main.py` con entradas simuladas.
 
-**Documentación detallada:** [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
+Documentación: [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
 
-**Ejecutar solo pruebas E2E:**
 ```bash
-python3 -m pytest -v -m e2e
+python3 -m pytest -m e2e -v
 ```
 
 ### Cómo ejecutar los tests
 
-Los tests se ejecutan desde la raíz del proyecto con **pytest**:
-
 ```bash
-python3 -m pytest -q
+python3 -m pytest -v
 ```
 
 ## 3. Planificar la ejecución de las Pruebas
 
 ### 3.1 Planificación de la ejecución
 
-Se planificó ejecutar las pruebas de forma automática con **pytest**.
-
 **Orden de ejecución:**
-1. Pruebas unitarias de `Libro`
-2. Pruebas unitarias de `Socio`
-3. Pruebas de integración de `Biblioteca`
-4. Pruebas End-to-End del menú de consola
+1. Componentes (`Libro`, `Socio`, `Biblioteca`)
+2. Integración
+3. Caja negra
+4. Rendimiento
+5. End-to-End (interfaz y camino)
 
-**Comando utilizado:**
+**Comando:**
+
 ```bash
 python3 -m pytest -v
 ```
+
 ### 3.2 Ejecución de las Pruebas y Documentación
 
-Fecha de ejecución: 2 de junio de 2026
+**Fecha de ejecución:** 2 de junio de 2026
 
-Informe E2E: [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
+**Documentación:** [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md) | [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md)
 
-Salida obtenida:
+| Test | Tipo | Resultado |
+|------|------|-----------|
+| tests/test_libro.py (2 tests) | Componente | PASSED |
+| tests/test_socio.py (1 test) | Componente | PASSED |
+| tests/test_biblioteca_componente.py (5 tests) | Componente | PASSED |
+| tests/test_biblioteca.py (2 tests) | Integración | PASSED |
+| tests/test_caja_negra.py (8 tests) | Caja negra | PASSED |
+| tests/test_rendimiento.py (4 tests) | Rendimiento | PASSED |
+| tests/test_e2e.py (7 tests) | E2E | PASSED |
 
-| Test | Tipo de prueba | Resultado |
-|---|---|---|
-| tests/test_libro.py::test_libro_getters_y_estado | Unitaria | PASSED |
-| tests/test_libro.py::test_prestar_devolver | Unitaria | PASSED |
-| tests/test_socio.py::test_socio_prestamo_y_limite | Unitaria | PASSED |
-| tests/test_biblioteca.py::test_prestamo_exitoso | Integracion | PASSED |
-| tests/test_biblioteca.py::test_prestamo_fallos | Integracion | PASSED |
-| tests/test_e2e.py::test_e2e_prestamo_exitoso | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_prestamo_libro_no_disponible | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_devolucion_exitosa | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_agregar_libro_y_listar | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_registrar_socio | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_opcion_invalida | E2E | PASSED |
-| tests/test_e2e.py::test_e2e_salir | E2E | PASSED |
-
-**12 passed in 0.12s**
-
+**29 passed in ~5s** (incluye benchmarks de rendimiento)

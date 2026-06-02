@@ -105,9 +105,13 @@ tests/test_socio.py::test_socio_prestamo_y_limite PASSED
 
 | Tipo | Archivo | Qué valida |
 |------|---------|------------|
-| Unitaria | `tests/test_libro.py`, `tests/test_socio.py` | Métodos y reglas de cada clase |
+| Componente | `tests/test_libro.py`, `tests/test_socio.py`, `tests/test_biblioteca_componente.py` | Métodos y reglas de cada clase |
 | Integración | `tests/test_biblioteca.py` | Interacción entre `Biblioteca`, `Libro` y `Socio` |
+| Caja negra | `tests/test_caja_negra.py` | Entrada/salida por API pública |
+| Rendimiento | `tests/test_rendimiento.py` | Tiempos con `pytest-benchmark` |
 | E2E | `tests/test_e2e.py` | Flujo completo usuario → consola → sistema |
+
+Matriz general: [MATRIZ_PRUEBAS.md](MATRIZ_PRUEBAS.md)
 
 ## 9. Limitaciones conocidas
 
