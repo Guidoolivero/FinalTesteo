@@ -5,7 +5,7 @@ from biblioteca.libro import Libro
 
 @pytest.fixture
 def libro():
-    return Libro("100", "Título", "Autor")
+    return Libro("100", "Titulo", "Autor")
 
 
 def test_socio_prestamo_y_limite(libro):
@@ -14,7 +14,7 @@ def test_socio_prestamo_y_limite(libro):
     assert s.puede_pedir_prestado() is True
     s.agregar_prestamo(libro)
     assert len(s.get_libros_prestados()) == 1
-    # Simular límite
+    # Simular limite
     for i in range(2):
         s.agregar_prestamo(Libro(str(200+i), "T", "A"))
     assert s.puede_pedir_prestado() is False
