@@ -1,6 +1,6 @@
 # Pruebas End-to-End (E2E) — Biblioteca OO
 
-**Trabajo Práctico Final - Testing de Software**  
+**TP Final — Punto 4.1 (documentación E2E)**  
 **Universidad de Belgrano** — Técnico en Programación de Computadoras
 
 ## 1. Objetivo

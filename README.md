@@ -96,17 +96,7 @@ Archivo: `tests/test_e2e.py` — validación del menú de consola, mensajes al u
 
 Archivo: `tests/test_e2e.py` — caminos felices y de error (préstamo, devolución, alta, salida). Ver [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md) (columna Camino).
 
-### 2.7 Pruebas End-to-End (E2E)
-
-Archivo: `tests/test_e2e.py` (marker `e2e`) — flujo completo ejecutando `main.py` con entradas simuladas.
-
-Documentación: [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
-
-```bash
-python3 -m pytest -m e2e -v
-```
-
-### Cómo ejecutar los tests
+### Cómo ejecutar los tests (punto 2)
 
 ```bash
 python3 -m pytest -v
@@ -116,12 +106,14 @@ python3 -m pytest -v
 
 ### 3.1 Planificación de la ejecución
 
-**Orden de ejecución:**
+**Orden de ejecución (puntos 2 y 3):**
 1. Componentes (`Libro`, `Socio`, `Biblioteca`)
 2. Integración
 3. Caja negra
 4. Rendimiento
-5. End-to-End (interfaz y camino)
+5. Interfaz y camino (tests E2E del menú; ver también punto 4)
+
+**Punto 4 (E2E completo):** ejecutar después, con `pytest -m e2e -v`
 
 **Comando:**
 
@@ -133,7 +125,8 @@ python3 -m pytest -v
 
 **Fecha de ejecución:** 2 de junio de 2026
 
-**Documentación:** [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md) | [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md)
+**Documentación de ejecución:** [docs/MATRIZ_PRUEBAS.md](docs/MATRIZ_PRUEBAS.md)  
+**Documentación E2E (punto 4.1):** [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
 
 | Test | Tipo | Resultado |
 |------|------|-----------|
@@ -146,3 +139,21 @@ python3 -m pytest -v
 | tests/test_e2e.py (7 tests) | E2E | PASSED |
 
 **29 passed in ~5s** (incluye benchmarks de rendimiento)
+
+## 4. Pruebas End-to-End (E2E)
+
+Se aplicaron pruebas E2E automatizadas sobre el flujo completo de la consola: se ejecuta `main.py`, se simulan entradas del usuario y se validan los mensajes de salida.
+
+**Archivo:** `tests/test_e2e.py` (marker `e2e`)
+
+**Escenarios:** préstamo exitoso, libro no disponible, devolución, alta de libro y listado, registro de socio, opción inválida, salida del programa.
+
+```bash
+python3 -m pytest -m e2e -v
+```
+
+### 4.1 Documentación
+
+Informe con objetivo, matriz de casos, comandos y evidencia de ejecución:
+
+[docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
