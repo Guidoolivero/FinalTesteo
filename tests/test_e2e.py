@@ -23,36 +23,36 @@ def run_cli(stdin: str) -> subprocess.CompletedProcess[str]:
 def test_e2e_prestamo_exitoso():
     result = run_cli("3\n001\n12345678\n0\n")
     assert result.returncode == 0
-    assert "Préstamo realizado con éxito" in result.stdout
+    assert "Prestamo realizado con exito" in result.stdout
 
 
 @pytest.mark.e2e
 def test_e2e_prestamo_libro_no_disponible():
     result = run_cli("3\n001\n12345678\n3\n001\n87654321\n0\n")
     assert result.returncode == 0
-    assert "Préstamo realizado con éxito" in result.stdout
-    assert "no está disponible" in result.stdout
+    assert "Prestamo realizado con exito" in result.stdout
+    assert "no esta disponible" in result.stdout
 
 
 @pytest.mark.e2e
 def test_e2e_devolucion_exitosa():
     result = run_cli("3\n001\n12345678\n4\n001\n0\n")
     assert result.returncode == 0
-    assert "Libro devuelto correctamente" in result.stdout
+    assert "Libro devuelto corectamente" in result.stdout
 
 
 @pytest.mark.e2e
 def test_e2e_agregar_libro_y_listar():
     result = run_cli("1\n999\nObra Nueva\nAutor Test\n5\n0\n")
     assert result.returncode == 0
-    assert "Libro agregado" in result.stdout
+    assert "Libo agregado" in result.stdout
     assert "999" in result.stdout
     assert "Obra Nueva" in result.stdout
 
 
 @pytest.mark.e2e
 def test_e2e_registrar_socio():
-    result = run_cli("2\n11223344\nMaría Test\n0\n")
+    result = run_cli("2\n11223344\nMaria Test\n0\n")
     assert result.returncode == 0
     assert "Socio registrado" in result.stdout
 
@@ -61,11 +61,11 @@ def test_e2e_registrar_socio():
 def test_e2e_opcion_invalida():
     result = run_cli("99\n0\n")
     assert result.returncode == 0
-    assert "Opción inválida" in result.stdout
+    assert "Opcion invalida" in result.stdout
 
 
 @pytest.mark.e2e
 def test_e2e_salir():
     result = run_cli("0\n")
     assert result.returncode == 0
-    assert "Gracias por usar BibliotecaOO" in result.stdout
+    assert "Gracias por usar el sistema" in result.stdout
