@@ -1,35 +1,35 @@
-# Pruebas End-to-End (E2E) — Biblioteca OO
+# Pruebas End-to-End (E2E) - Biblioteca
 
-**TP Final — Punto 4.1 (documentación E2E)**  
-**Universidad de Belgrano** — Técnico en Programación de Computadoras
+**TP Final - Punto 4.1 (documentacion E2E)**  
+**Universidad de Belgrano** - Tecnico en Programacion de Computadoras
 
 ## 1. Objetivo
 
-Verificar el sistema completo desde la perspectiva del usuario: entradas del menú de consola, procesamiento por `main.py` y respuestas en pantalla, sin acceder al código interno durante la ejecución del test.
+Verificar el sistema completo desde la perspectiva del usuario: entradas del menu de consola, procesamiento por `main.py` y respuestas en pantalla, sin acceder al codigo interno durante la ejecucion del test.
 
 ## 2. Alcance
 
 | Incluido | Excluido |
 |----------|----------|
-| Menú principal y opciones 0–6 | Pruebas unitarias de clases aisladas |
-| Alta de libro y socio por consola | Pruebas de integración directa sobre `Biblioteca` |
-| Préstamo, devolución y listados | Interfaz gráfica o web |
-| Validación de mensajes al usuario | Rendimiento masivo (benchmark) |
+| Menu principal y opciones 0-6 | Pruebas unitarias de clases aisladas |
+| Alta de libro y socio por consola | Pruebas de integracion directa sobre `Biblioteca` |
+| Prestamo, devolucion y listados | Interfaz grafica o web |
+| Validacion de mensajes al usuario | Rendimiento masivo (benchmark) |
 
 ## 3. Herramientas
 
 - **Python 3**
 - **pytest** con marker `e2e`
-- **subprocess**: lanza `python main.py` y simula `stdin` como haría un usuario
+- **subprocess**: lanza `python main.py` y simula `stdin` como haria un usuario
 
-Los tests están en [`tests/test_e2e.py`](../tests/test_e2e.py).
+Los tests estan en [`tests/test_e2e.py`](../tests/test_e2e.py).
 
 ## 4. Datos iniciales del programa
 
 Al iniciar, `main.py` precarga:
 
 - Libros: ISBN `001`, `002`, `003`
-- Socios: DNI `12345678` (Juan Pérez), DNI `87654321` (Ana López)
+- Socios: DNI `12345678` (Juan Perez), DNI `87654321` (Ana Lopez)
 
 Los escenarios E2E usan esos datos salvo cuando agregan libro o socio nuevos.
 
@@ -37,30 +37,30 @@ Los escenarios E2E usan esos datos salvo cuando agregan libro o socio nuevos.
 
 | ID | Test | Entrada (secuencia) | Resultado esperado |
 |----|------|---------------------|--------------------|
-| E2E-01 | `test_e2e_prestamo_exitoso` | `3` → `001` → `12345678` → `0` | Mensaje de préstamo exitoso |
-| E2E-02 | `test_e2e_prestamo_libro_no_disponible` | Préstamo de `001`, segundo préstamo del mismo ISBN | Libro no disponible en el segundo intento |
-| E2E-03 | `test_e2e_devolucion_exitosa` | Préstamo + `4` devolver `001` + `0` | Libro devuelto correctamente |
-| E2E-04 | `test_e2e_agregar_libro_y_listar` | Alta libro `999` + listar + `0` | Libro agregado y visible en listado |
+| E2E-01 | `test_e2e_prestamo_exitoso` | `3` -> `001` -> `12345678` -> `0` | Mensaje de prestamo exitoso |
+| E2E-02 | `test_e2e_prestamo_libro_no_disponible` | Prestamo de `001`, segundo prestamo del mismo ISBN | Libro no disponible en el segundo intento |
+| E2E-03 | `test_e2e_devolucion_exitosa` | Prestamo + `4` devolver `001` + `0` | Libro devuelto corectamente |
+| E2E-04 | `test_e2e_agregar_libro_y_listar` | Alta libro `999` + listar + `0` | Libo agregado y visible en listado |
 | E2E-05 | `test_e2e_registrar_socio` | Alta socio + `0` | Socio registrado |
-| E2E-06 | `test_e2e_opcion_invalida` | `99` + `0` | Opción inválida |
+| E2E-06 | `test_e2e_opcion_invalida` | `99` + `0` | Opcion invalida |
 | E2E-07 | `test_e2e_salir` | `0` | Mensaje de despedida y salida limpia |
 
-## 6. Cómo ejecutar
+## 6. Como ejecutar
 
-Desde la raíz del proyecto:
+Desde la raiz del proyecto:
 
 ```bash
 python3 -m pip install -r requirements.txt
 python3 -m pytest -v -m e2e
 ```
 
-Para ejecutar toda la suite (unitarias, integración y E2E):
+Para ejecutar toda la suite (unitarias, integracion y E2E):
 
 ```bash
 python3 -m pytest -v
 ```
 
-## 7. Evidencia de ejecución
+## 7. Evidencia de ejecucion
 
 **Fecha:** 2 de junio de 2026
 
@@ -82,39 +82,26 @@ tests/test_e2e.py::test_e2e_salir PASSED                                 [100%]
 ======================= 7 passed, 5 deselected in 0.12s ========================
 ```
 
-Suite completa:
+Suite completa (29 tests):
 
 ```text
-tests/test_biblioteca.py::test_prestamo_exitoso PASSED
-tests/test_biblioteca.py::test_prestamo_fallos PASSED
-tests/test_e2e.py::test_e2e_prestamo_exitoso PASSED
-tests/test_e2e.py::test_e2e_prestamo_libro_no_disponible PASSED
-tests/test_e2e.py::test_e2e_devolucion_exitosa PASSED
-tests/test_e2e.py::test_e2e_agregar_libro_y_listar PASSED
-tests/test_e2e.py::test_e2e_registrar_socio PASSED
-tests/test_e2e.py::test_e2e_opcion_invalida PASSED
-tests/test_e2e.py::test_e2e_salir PASSED
-tests/test_libro.py::test_libro_getters_y_estado PASSED
-tests/test_libro.py::test_prestar_devolver PASSED
-tests/test_socio.py::test_socio_prestamo_y_limite PASSED
-
-============================== 12 passed in 0.12s ==============================
+============================== 29 passed in ~5s ==============================
 ```
 
-## 8. Relación con otros tipos de prueba
+## 8. Relacion con otros tipos de prueba
 
-| Tipo | Archivo | Qué valida |
+| Tipo | Archivo | Que valida |
 |------|---------|------------|
-| Componente | `tests/test_libro.py`, `tests/test_socio.py`, `tests/test_biblioteca_componente.py` | Métodos y reglas de cada clase |
-| Integración | `tests/test_biblioteca.py` | Interacción entre `Biblioteca`, `Libro` y `Socio` |
-| Caja negra | `tests/test_caja_negra.py` | Entrada/salida por API pública |
+| Componente | `tests/test_libro.py`, `tests/test_socio.py`, `tests/test_biblioteca_componente.py` | Metodos y reglas de cada clase |
+| Integracion | `tests/test_biblioteca.py` | Interaccion entre `Biblioteca`, `Libro` y `Socio` |
+| Caja negra | `tests/test_caja_negra.py` | Entrada/salida por API publica |
 | Rendimiento | `tests/test_rendimiento.py` | Tiempos con `pytest-benchmark` |
-| E2E | `tests/test_e2e.py` | Flujo completo usuario → consola → sistema |
+| E2E | `tests/test_e2e.py` | Flujo completo usuario -> consola -> sistema |
 
 Matriz general: [MATRIZ_PRUEBAS.md](MATRIZ_PRUEBAS.md)
 
 ## 9. Limitaciones conocidas
 
 - Cada test inicia una nueva instancia del programa (no comparte estado entre tests).
-- Timeout de 5 segundos por proceso para evitar bloqueos si falta la opción `0` (Salir).
-- Los emojis en la salida de consola se validan por texto; en terminales muy antiguas la visualización puede variar sin afectar la lógica del sistema.
+- Timeout de 5 segundos por proceso para evitar bloqueos si falta la opcion `0` (Salir).
+- Los mensajes de consola se validan por texto exacto (incluye typos como "Libo agregado").
