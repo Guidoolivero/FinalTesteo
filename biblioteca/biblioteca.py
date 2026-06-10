@@ -54,7 +54,7 @@ class Biblioteca:
                 libro.devolver()
                 socio.devolver_libro(libro)
                 print("Libro devuelto corectamente.")
-                return True
+                return False #Modificacion de True a False
         return False
 
     def listar_libros(self):
