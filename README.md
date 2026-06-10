@@ -157,3 +157,14 @@ python3 -m pytest -m e2e -v
 Informe con objetivo, matriz de casos, comandos y evidencia de ejecucion:
 
 [docs/PRUEBAS_E2E.md](docs/PRUEBAS_E2E.md)
+
+### Entrega Final TP
+
+Se modifico la linea 57 de bibloiteca.py, donde se cambio el return True por return False.
+Eso hace que salte un error en el Test. 
+
+```
+AssertionError: assert False is True
+E        +  where False = devolver_libro('10')
+E        +    where devolver_libro = <biblioteca.biblioteca.Biblioteca object at 0x1040089e0>.devolver_libro
+```
